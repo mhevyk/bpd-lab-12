@@ -1,0 +1,54 @@
+### Проста регістрація
+
+POST http://localhost:5000/auth/registration
+Content-Type: application/json
+
+{
+    "username": "max1",
+    "password": "1234"
+}
+
+### Регістрація адміністратора
+
+POST http://localhost:5000/auth/registration
+Content-Type: application/json
+
+{
+    "username": "petro",
+    "password": "petro",
+    "roleId": 2
+}
+
+### Простий логін
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "max1",
+    "password": "1234"
+}
+
+### Логін адміністратора
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "petro",
+    "password": "petro"
+}
+
+### Отримання списку користувачів, видасть помилку, бо користувач не авторизований
+
+GET http://localhost:5000/auth/users
+
+### Отримання списку користувачів, видасть помилку, якщо термін дії токену сплив або він некоректний
+
+GET http://localhost:5000/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzAwMTM0OTIxLCJleHAiOjE3MDAyMjEzMjF9.erNLPRm6ZXaZ42IqxKIsO4TNLb9PGZwJYZspVfF5GuM
+
+### Отримання списку користувачів, дасть доступ тільки користувачам з роллю адміністратора
+
+GET http://localhost:5000/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsInJvbGVzIjpbIkFETUlOIl0sImlhdCI6MTcwMDEzNTYyOCwiZXhwIjoxNzAwMjIyMDI4fQ.ikW2vMQatOkPkNvoAaytjoU96nE1NHD_bY_x-pgC2Eg
